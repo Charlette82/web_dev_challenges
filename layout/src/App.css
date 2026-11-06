@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Teko:wght@400;500;600&display=swap");
+
+/* ---------- Brand colours ---------- */
+:root {
+  --black: #070410;
+  --purple: #231651;
+  --teal: #4DCCBD;
+  --yellow: #EEF36A;
+  --white: #FFFFFF;
+
+  /* Mobile (360px - 720px) */
+  --small: 16px;
+  --large: 16px;
+  --logo-size: 2em;
+}
+
+/* Tablet (720px - 1024px) */
+@media (min-width: 720px) {
+  :root {
+    --large: 32px;
+    --logo-size: 3em;
+  }
+}
+
+/* Desktop (1024px and up) */
+@media (min-width: 1024px) {
+  :root {
+    --large: 48px;
+  }
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 360px;
+  background: var(--black);
+  color: var(--white);
+  font-family: "Lato", sans-serif;
+  line-height: 1.4;
+  display: block;
+  place-items: initial;
+}
+
+h1, h2, .btn {
+  font-family: "Teko", sans-serif;
+  font-weight: 500;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--small);
+  padding: var(--small);
+  background: var(--purple);
+  border-bottom: 4px solid var(--teal);
+}
+
+.logo {
+  margin: 0;
+  font-size: var(--logo-size);
+  line-height: 1;
+  color: var(--yellow);
+}
+
+.main-nav {
+  display: none;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: var(--large);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main-nav a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.main-nav a:hover,
+.main-nav a:focus-visible {
+  color: var(--teal);
+  text-decoration: underline;
+}
+
+@media (min-width: 720px) {
+  .main-nav {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: var(--small);
+  border: 0;
+  border-radius: var(--small);
+  background: var(--teal);
+  color: var(--black);
+  font-size: 2em;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: var(--yellow);
+}
+
+.search-btn {
+  font-size: 1.25em;
+  padding: calc(var(--small) / 2) var(--small);
+}
+
+/* ---------- Primary content container ---------- */
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--large);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--large);
+}
+
+@media (min-width: 720px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---------- Movie cards ---------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--purple);
+  border: 2px solid var(--teal);
+  box-shadow: 8px 8px 0 var(--teal);
+  font-size: 1.5em;
+}
+
+.card picture {
+  display: block;
+  width: 100%;
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: var(--black);
+}
+
+.card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--small);
+  padding: var(--small);
+}
+
+.card-text {
+  flex: 1;
+}
+
+.card h2 {
+  margin: 0 0 var(--small);
+  font-size: 1.5em;
+  line-height: 1;
+  color: var(--yellow);
+}
+
+.card p {
+  margin: 0;
+}
+
+.card .btn {
+  width: 100%;
+}
+
+/* ---------- Desktop-only card layouts ---------- */
+@media (min-width: 1024px) {
+  /* Featured card: wide image on top, text and button side by side below */
+  .card--featured {
+    grid-column: 1 / -1;
+  }
+
+  .card--featured picture {
+    width: 100%;
+  }
+
+  .card--featured img {
+    width: 100%;
+    min-height: 200px;
+    aspect-ratio: 3 / 1;
+    object-fit: cover;
+  }
+
+  .card--featured .card-body {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .card--featured .btn {
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Wide cards: poster left, text right */
+  .card--wide {
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+
+  .card--wide picture {
+    width: 50%;
+    flex-shrink: 0;
+  }
+
+  .card--wide img {
+    width: 100%;
+  }
+}
